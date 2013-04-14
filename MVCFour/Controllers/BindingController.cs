@@ -23,5 +23,10 @@ namespace MVCFour.Controllers
         {
             return View();
         }
+        public JsonResult Save(Person person)
+        {
+            var message = string.Format("Save {0} and {1}", person.FirstName, person.LastName);
+            return Json(new {message});
+        }
     }
 }
