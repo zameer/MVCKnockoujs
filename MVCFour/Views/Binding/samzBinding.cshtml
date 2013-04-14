@@ -28,6 +28,17 @@ Last Name: <input type="text" data-bind="value: lastName" /><br />
             friends: ko.observableArray([new friend("Nufla"), new friend("Samz")]),
             addFriend: function () {
                 this.friends.push(new friend("Next"));
+            },
+             save: function () {
+                $.ajax({
+                    url: "@Url.Action("Save")",
+                    type: "post",
+                    data: ko.toJSON(this),
+                    contentType: "application/json",
+                    success: function (result) {
+                        alert(result.message);
+                    }
+                });
             }
         };
 
