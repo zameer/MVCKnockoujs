@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<script src="~/Scripts/knockout-2.1.0.js"></script>
+
+<p>First Name :
+    <input type="text" data-bind="value: firstName" /></p>
+<p>Last Name :
+    <input type="text" data-bind="value: lastName" /></p>
+<p>Full Name : <span data-bind="text: fullName"></span></p>
+
+<h2>Friends</h2>
+<div data-bind="template: 'person-template'"></div>
+
+<script type="text/html" id="person-template">
+    <h3 data-bind="text: firstName"></h3>
+</script>
+
+<script type="text/javascript">
+    function friend(name) {
+        return { name: ko.observable(name) };
+    }
+    var viewModel = {
+        firstName: ko.observable("Ayyash"),
+        lastName: ko.observable("Ahamed"),
+        friends: ko.observableArray([new friend("Shaara"), new friend("nufla")])
+    };
+
+    viewModel.fullName = ko.dependentObservable(function () {
+        return this.firstName() + " and " + this.lastName();
+    }, viewModel);
+
+    ko.applyBindings(viewModel);
+</script>
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>
+    <p>
+        Use this area to provide additional information.
+    </p>
+
+    <p>
+        Use this area to provide additional information.
+    </p>
+
+    <p>
+        Use this area to provide additional information.
+    </p>
+</article>
+
+<aside>
+    <h3>Aside Title</h3>
+    <p>
+        Use this area to provide additional information.
+    </p>
+    <ul>
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    </ul>
+</aside>

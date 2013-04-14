@@ -1,0 +1,5 @@
+﻿<ul data-bind="template: {name: 'friendsTemplate', foreach:friends}"></ul>
+<script id="friendsTemplate" type="text/html">
+    <li><span data-bind="text: name"></span> <button data-bind="click: remove">Remove</button></li>
+</script>
+<button data-bind="click: addFriend">New Friend</button>

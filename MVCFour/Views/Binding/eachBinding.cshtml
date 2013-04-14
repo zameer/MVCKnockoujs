@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "eachBinding";
+}
+<script src="~/Scripts/knockout-2.1.0.js"></script>
+<div id="foreach-binding">@Html.Partial("_Products")</div>
+
+@section scripts{
+    <script type="text/javascript">
+        function foreachViewModel() {
+            var self = this;
+            self.products = ko.observableArray([
+                { name: 'Ayyash' },
+                { name: 'Shaara' },
+                { name: 'ZANU' }
+            ]);
+        }
+        ko.applyBindings(new foreachViewModel, $("#foreach-binding")[0]);
+    </script>
+    }

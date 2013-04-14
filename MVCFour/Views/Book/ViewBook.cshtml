@@ -1,0 +1,24 @@
+﻿@model  MVCFour.ViewModel.BookListing
+
+@{
+    ViewBag.Title = "ViewBook";
+}
+
+
+
+<h2>ViewBook</h2>
+<table>
+    <tr>
+        <td>
+            @Model.book.Name
+        </td>
+        <td>
+            @Model.book.URL
+        </td>
+        <td>
+            @Html.Partial("_Authors", Model)
+        </td>
+    </tr>
+</table>
+
+

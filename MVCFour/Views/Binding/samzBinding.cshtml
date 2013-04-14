@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "samzBinding";
+}
+<script src="~/Scripts/knockout-2.1.0.js"></script>
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<h2>samzBinding</h2>
+First Name: <input type="text" data-bind="value: firstName" /><br />
+Last Name: <input type="text" data-bind="value: lastName" /><br />
+@Html.Partial("_FullName")
+
+<h2>Friends</h2>
+@Html.Partial("_Friends")
+
+@section scripts{
+    <script type="text/javascript">
+        function friend(name) {
+            return {
+                name: ko.observable(name),
+                remove: function () {
+                    viewModel.friends.remove(this);
+                }
+            };
+        }
+
+        var viewModel = {
+            firstName: ko.observable("Ayyash"),
+            lastName: ko.observable("Ahamed"),
+            friends: ko.observableArray([new friend("Nufla"), new friend("Samz")]),
+            addFriend: function () {
+                this.friends.push(new friend("Next"));
+            }
+        };
+
+        viewModel.fullName = ko.dependentObservable(function () {
+            return this.firstName() + " " + this.lastName();
+        }, viewModel);
+
+        ko.applyBindings(viewModel);
+    </script>
+}

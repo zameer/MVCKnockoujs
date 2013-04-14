@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<script src="~/Scripts/knockout-2.1.0.js"></script>
+<ul data-bind="template: { name: 'seasonTemplate', foreach: seasons, as: 'season' }"></ul>
+ 
+<script type="text/html" id="seasonTemplate">
+    <li>
+        <strong data-bind="text: name"></strong>
+        <ul data-bind="template: { name: 'monthTemplate', foreach: months, as: 'month' }"></ul>
+    </li>
+</script>
+ 
+<script type="text/html" id="monthTemplate">
+    <li>
+        <span data-bind="text: month"></span>
+        is in
+        <span data-bind="text: season.name"></span>
+    </li>
+</script>
+ 
+<script>
+    var viewModel = {
+        seasons: ko.observableArray([
+            { name: 'Spring', months: [ 'March', 'April', 'May' ] },
+            { name: 'Summer', months: [ 'June', 'July', 'August' ] },
+            { name: 'Autumn', months: [ 'September', 'October', 'November' ] },
+            { name: 'Winter', months: [ 'December', 'January', 'February' ] }
+        ])
+    };
+    ko.applyBindings(viewModel);
+</script>
+<br /><br />
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<section class="contact">
+    <header>
+        <h3>Phone</h3>
+    </header>
+    <p>
+        <span class="label">Main:</span>
+        <span>425.555.0100</span>
+    </p>
+    <p>
+        <span class="label">After Hours:</span>
+        <span>425.555.0199</span>
+    </p>
+</section>
+
+<section class="contact">
+    <header>
+        <h3>Email</h3>
+    </header>
+    <p>
+        <span class="label">Support:</span>
+        <span><a href="mailto:Support@example.com">Support@example.com</a></span>
+    </p>
+    <p>
+        <span class="label">Marketing:</span>
+        <span><a href="mailto:Marketing@example.com">Marketing@example.com</a></span>
+    </p>
+    <p>
+        <span class="label">General:</span>
+        <span><a href="mailto:General@example.com">General@example.com</a></span>
+    </p>
+</section>
+
+<section class="contact">
+    <header>
+        <h3>Address</h3>
+    </header>
+    <p>
+        One Microsoft Way<br />
+        Redmond, WA 98052-6399
+    </p>
+</section>
